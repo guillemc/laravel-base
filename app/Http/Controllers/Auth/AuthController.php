@@ -23,6 +23,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    protected $guard = 'front';
+
     /**
      * Where to redirect users after login / registration.
      *

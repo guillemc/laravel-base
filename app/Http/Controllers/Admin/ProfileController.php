@@ -1,21 +1,11 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:front');
-    }
 
     /**
      * Show the application dashboard.
@@ -24,6 +14,6 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        return view('profile');
+        return view('admin.profile');
     }
 }

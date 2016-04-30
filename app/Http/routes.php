@@ -13,8 +13,6 @@
 
 Route::get('/', 'SiteController@index')->name('home');
 
-Route::auth();
-
 Route::get('/profile', 'ProfileController@index')->name('profile');
 
 // Authentication Routes...
@@ -31,3 +29,23 @@ Route::get('/password/email', 'Auth\PasswordController@showLinkRequestForm')->na
 Route::post('/password/email', 'Auth\PasswordController@sendResetLinkEmail')->name('forgot_password_action');
 Route::get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm')->name('reset_password');
 Route::post('/password/reset', 'Auth\PasswordController@reset')->name('reset_password_action');
+
+
+// ADMIN ROUTES
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin::'], function () {
+
+    Route::get('/', 'SiteController@index')->name('home');
+    Route::get('/profile', 'ProfileController@index')->name('profile');
+
+    // Authentication Routes...
+    Route::get('/login', 'Auth\AuthController@showLoginForm')->name('login');
+    Route::post('/login', 'Auth\AuthController@login')->name('login_action');
+    Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
+
+    // Password Reset Routes...
+    Route::get('/password/email', 'Auth\PasswordController@showLinkRequestForm')->name('forgot_password');
+    Route::post('/password/email', 'Auth\PasswordController@sendResetLinkEmail')->name('forgot_password_action');
+    Route::get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm')->name('reset_password');
+    Route::post('/password/reset', 'Auth\PasswordController@reset')->name('reset_password_action');
+
+});

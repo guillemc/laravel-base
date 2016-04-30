@@ -13,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app['request']->segment(1) == 'admin') {
+            $this->app['config']['auth.defaults.guard'] = 'back';
+        } else {
+            $this->app['config']['auth.defaults.guard'] = 'front';
+        }
     }
 
     /**
