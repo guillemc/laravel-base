@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class SuccessfulLogin
@@ -27,8 +28,9 @@ class SuccessfulLogin
     {
         $user = $event->user;
         if (Schema::hasColumn($user->getTable(), 'last_login')) {
-            $user->last_login = $user->freshTimestamp();
-            $user->save();
+            DB::table($user->getTable())
+                    ->where('id', $user->id)
+                    ->update(['last_login' => $user->freshTimestamp()]);
         }
     }
 }
