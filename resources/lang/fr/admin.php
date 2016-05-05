@@ -1,14 +1,11 @@
-<?php 
+<?php
 
 return [
     'title_reset_password' => '',
     'text_forgot_password' => '',
-    'label_email' => '',
     'btn_send' => '',
     'email_reset_password_text' => '',
     'text_reset_password' => '',
-    'label_password' => '',
-    'label_repeat_password' => '',
     'btn_reset_password' => '',
     'title_login' => '',
     'text_please_log_in' => '',
