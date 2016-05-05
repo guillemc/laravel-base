@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive('class', function($array) {
-            return "<?php echo Html::classes{$array}; ?>";
+            return "<?php echo html_classes{$array}; ?>";
         });
 
         Blade::directive('err_class', function($field) {

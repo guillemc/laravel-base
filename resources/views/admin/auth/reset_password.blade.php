@@ -21,17 +21,17 @@
       <input type="hidden" name="token" value="{{ $token }}">
 
       <div class="form-group has-feedback @err_class('email')">
-        <input type="email" class="form-control" name="email" value="{{ $email or old('email') }}" placeholder="{{ trans('admin.label_email') }}">
+        <input type="email" class="form-control" name="email" value="{{ $email or old('email') }}" placeholder="{{ label('email') }}">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
 
       <div class="form-group has-feedback @err_class('password')">
-        <input type="password" class="form-control" name="password" autocomplete="off" placeholder="{{ trans('admin.label_password') }}">
+        <input type="password" class="form-control" name="password" autocomplete="off" placeholder="{{ label('password') }}">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
       <div class="form-group has-feedback @err_class('password_confirmation')">
-        <input type="password" class="form-control" name="password_confirmation" autocomplete="off" placeholder="{{ trans('admin.label_repeat_password') }}">
+        <input type="password" class="form-control" name="password_confirmation" autocomplete="off" placeholder="{{ label('password_confirmation') }}">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
