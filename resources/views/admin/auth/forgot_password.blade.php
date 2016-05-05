@@ -20,7 +20,7 @@
     <form id="login-form" action="{{ route('admin.forgot_password_action') }}" method="post">
       {!! csrf_field() !!}
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off" autofocus="autofocus" placeholder="{{ trans('admin.label_email') }}">
+        <input type="text" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off" autofocus="autofocus" placeholder="{{ label('email') }}">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="row">

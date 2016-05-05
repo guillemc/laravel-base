@@ -18,11 +18,11 @@
     <form id="login-form" action="{{ route('admin.login_action') }}" method="post">
       {!! csrf_field() !!}
       <div class="form-group has-feedback @err_class('email')">
-        <input type="text" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off" autofocus="autofocus" placeholder="{{ trans('admin.label_email') }}">
+        <input type="text" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off" autofocus="autofocus" placeholder="{{ label('email') }}">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback @err_class('password')">
-        <input type="password" class="form-control" name="password" autocomplete="off" placeholder="{{ trans('admin.label_password') }}">
+        <input type="password" class="form-control" name="password" autocomplete="off" placeholder="{{ label('password') }}">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">

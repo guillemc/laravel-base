@@ -3,12 +3,9 @@
 return [
     'title_reset_password' => 'Reset password',
     'text_forgot_password' => 'In order to reset your password, please enter your email address.',
-    'label_email' => 'Email',
     'btn_send' => 'Send',
     'email_reset_password_text' => 'Please, click here to reset your password:',
     'text_reset_password' => 'In order to reset your password, please enter your email address.',
-    'label_password' => 'Password',
-    'label_repeat_password' => 'Repeat password',
     'btn_reset_password' => 'Rest password',
     'title_login' => 'Login',
     'text_please_log_in' => 'Please log in to continue.',
