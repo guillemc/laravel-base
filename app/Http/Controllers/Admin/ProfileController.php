@@ -16,6 +16,8 @@ class ProfileController extends Controller
     {
         $admin = $request->user();
 
+        $this->filter($request, ['name', 'email'], 'trim');
+
         $this->validate($request, [
             'name' => 'required|max:60',
             'email' => 'required|email|max:120|unique:admins,email,'.$admin->id,
@@ -32,6 +34,8 @@ class ProfileController extends Controller
     public function password(Request $request)
     {
         $admin = $request->user();
+
+        $this->filter($request, 'password', 'trim');
 
         $this->validate($request, [
             'password' => 'required|min:6|max:120|confirmed',
