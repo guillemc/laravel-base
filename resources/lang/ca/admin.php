@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 return [
     'title_reset_password' => '',
@@ -25,4 +25,10 @@ return [
     'error_invalid_token' => '',
     'menu_home' => '',
     'menu_users' => '',
+    'title_profile' => '',
+    'title_profile_info' => '',
+    'btn_save' => '',
+    'title_profile_password' => '',
+    'status_profile_updated' => '',
+    'status_password_updated' => '',
 ];
