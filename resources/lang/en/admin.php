@@ -25,4 +25,10 @@ return [
     'error_invalid_token' => 'Your password reset token is invalid or has expired, please repeat the process.',
     'menu_home' => 'Home',
     'menu_users' => 'Users',
+    'title_profile' => 'Profile',
+    'title_profile_info' => 'Profile info',
+    'btn_save' => 'Save',
+    'title_profile_password' => 'Change password',
+    'status_profile_updated' => 'Your profile data was successfully updated.',
+    'status_password_updated' => 'Your password was successfully updated.',
 ];

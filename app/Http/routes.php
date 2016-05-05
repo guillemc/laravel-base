@@ -36,6 +36,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     Route::get('/', 'SiteController@index')->name('admin.home');
     Route::get('/profile', 'ProfileController@index')->name('admin.profile');
+    Route::post('/profile', 'ProfileController@store')->name('admin.profile_store_action');
+    Route::post('/profile/password', 'ProfileController@password')->name('admin.profile_password_action');
 
     // Authentication Routes...
     Route::get('/login', 'Auth\AuthController@showLoginForm')->name('admin.login');
