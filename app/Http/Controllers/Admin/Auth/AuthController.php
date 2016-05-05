@@ -6,6 +6,7 @@ use App\User;
 use Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Lang;
 
 class AuthController extends \App\Http\Controllers\Controller
 {
@@ -26,12 +27,18 @@ class AuthController extends \App\Http\Controllers\Controller
 
     protected $loginView = 'admin.auth.login';
 
+    protected $username = 'email';
+
+    protected $maxLoginAttempts = 10;
+
     /**
      * Where to redirect users after login / registration.
      *
      * @var string
      */
     protected $redirectPath;
+
+    protected $redirectAfterLogout;
 
     /**
      * Create a new authentication controller instance.
@@ -41,6 +48,17 @@ class AuthController extends \App\Http\Controllers\Controller
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-        $this->redirectPath = route('admin::profile');
+        $this->redirectPath = route('admin.profile');
+        $this->redirectAfterLogout = route('admin.login');
+    }
+
+    protected function getFailedLoginMessage()
+    {
+        return Lang::get('admin.error_login_failed');
+    }
+
+    protected function getLockoutErrorMessage($seconds)
+    {
+        return Lang::get('admin.error_login_throttle', ['seconds' => $seconds]);
     }
 }

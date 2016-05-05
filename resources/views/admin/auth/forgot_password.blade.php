@@ -1,47 +1,36 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.login', ['title' => trans('admin.title_reset_password')])
 
-<!-- Main Content -->
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password (Backoffice)</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('admin::forgot_password_action') }}">
-                        {!! csrf_field() !!}
+<div class="login-box">
+  <div class="login-logo">
+      <a href="{{ route('home') }}"><b>{{ config('app.name') }}</b></a>
+  </div><!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">{{ trans('admin.text_forgot_password') }}</p>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+    @if($errors->has('email'))
+        <p class="text-danger"><i class="fa fa-exclamation-circle"></i> {{ $errors->first('email') }}</p>
+    @endif
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+    @if(session('status'))
+        <p class="text-success"><i class="fa fa-check"></i>  {{ session('status') }} </p>
+    @endif
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+    <form id="login-form" action="{{ route('admin.forgot_password_action') }}" method="post">
+      {!! csrf_field() !!}
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off" autofocus="autofocus" placeholder="{{ trans('admin.label_email') }}">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-4 col-xs-offset-8">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('admin.btn_send') }}</button>
+        </div><!-- /.col -->
+      </div>
+    </form>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i>Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->
+
 @endsection

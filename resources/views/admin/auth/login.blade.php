@@ -1,66 +1,46 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.login', ['title' => trans('admin.title_login')])
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login (Backoffice)</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('admin::login_action') }}">
-                        {!! csrf_field() !!}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+<div class="login-box">
+  <div class="login-logo">
+      <a href="{{ route('home') }}"><b>{{ config('app.name') }}</b></a>
+  </div><!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">{{ trans('admin.text_please_log_in') }}</p>
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+    @if(count($errors) > 0)
+    <p class="text-danger">
+        <i class="fa fa-exclamation-circle"></i> {{ trans('admin.error_login_failed') }}
+    </p>
+    @endif
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+    <form id="login-form" action="{{ route('admin.login_action') }}" method="post">
+      {!! csrf_field() !!}
+      <div class="form-group has-feedback @err_class('email')">
+        <input type="text" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off" autofocus="autofocus" placeholder="{{ trans('admin.label_email') }}">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback @err_class('password')">
+        <input type="password" class="form-control" name="password" autocomplete="off" placeholder="{{ trans('admin.label_password') }}">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox">
+              <label><input type="checkbox" name="remember" value="1" > {{ trans('admin.label_remember_me') }}</label>
+          </div>
+        </div><!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('admin.link_log_in') }}</button>
+        </div><!-- /.col -->
+      </div>
+    </form>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
+    <p class="text-right"><a href="{{ route('admin.forgot_password') }}">{{ trans('admin.link_forgot_password') }}</a></p>
 
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+  </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('admin::forgot_password') }}">Forgot Your Password?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

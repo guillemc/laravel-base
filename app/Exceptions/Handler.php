@@ -11,6 +11,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+
+    protected $view;
+
     /**
      * A list of the exception types that should not be reported.
      *
@@ -45,6 +48,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof HttpException) {
+            $status = $e->getStatusCode();
+            $this->view = $request->segment(1) == 'admin' ? "admin.errors.{$status}" : "errors.{$status}";
+        }
         return parent::render($request, $e);
+    }
+
+    protected function renderHttpException(HttpException $e)
+    {
+        if (isset($this->view) && view()->exists($this->view)) {
+            return response()->view($this->view, ['exception' => $e], $e->getStatusCode(), $e->getHeaders());
+        } else {
+            return $this->convertExceptionToResponse($e);
+        }
     }
 }

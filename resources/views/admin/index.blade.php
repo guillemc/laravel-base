@@ -1,17 +1,23 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.app', [
+    'title' => 'Dashboard',
+    'breadcrumbs' => [],
+    'menu_active' => 'home',
+])
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    Your Backoffice's Landing Page.
-                </div>
-            </div>
+<div class="row">
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>44</h3>
+          <p>Registered users</p>
         </div>
-    </div>
+        <div class="icon">
+          <i class="fa fa-user"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div><!-- ./col -->
 </div>
 @endsection

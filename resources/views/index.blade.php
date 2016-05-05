@@ -9,9 +9,6 @@
 
                 <div class="panel-body">
                     Your Application's Landing Page.
-
-                    <h4>Session variables</h4>
-                    <pre>{{ print_r(request()->session()->all(), true) }}</pre>
                 </div>
             </div>
         </div>
