@@ -1,7 +1,8 @@
 <?php
 
 function label($name) {
-    return ucfirst(trans("validation.attributes.{$name}"));
+    $key = "validation.attributes.{$name}";
+    return ucfirst(trans($key));
 }
 
 function html_classes($a) {

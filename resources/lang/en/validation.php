@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
     'accepted' => 'The :attribute must be accepted.',
@@ -79,7 +79,7 @@ return [
         'first_name' => 'first name',
         'last_name' => 'last name',
         'password' => 'password',
-        'password_confirmation' => 'password confirmation',
+        'password_confirmation' => 'confirm password',
         'city' => 'city',
         'country' => 'country',
         'address' => 'address',

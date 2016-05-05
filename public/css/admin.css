@@ -72,3 +72,12 @@ a.desc:after {
 .dropdown-toggle .fa-ellipsis-v {
     padding: 0 6px;
 }
+
+div.required label.control-label:after {
+    content: " *";
+    color: #777;
+}
+
+.box-header h2 {    
+    font-size: 20px;
+}
