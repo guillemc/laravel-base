@@ -14,6 +14,13 @@ class AdministratorController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.administrator.index');
+        $this->filter($request, 'page_size', [$this, 'sanitizePageSize']);
+        $search = $this->querySession($request, 'search', 'administrator.search', []);
+        $page = $this->querySession($request, 'page', 'administrator.page', 1);
+        $pageSize = $this->querySession($request, 'page_size', 'page_size', 20);
+
+        $users = App\Admin::paginate($pageSize);
+
+        return view('admin.administrator.index', compact('users', 'search', 'page', 'pageSize'));
     }
 }

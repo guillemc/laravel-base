@@ -13,10 +13,15 @@ trait FiltersInput
         $values = [];
         if (!is_array($keys)) $keys = array($keys);
         foreach ($keys as $key) {
-            $value = $request->input($key);
+            $value = $request->input($key, null);
+            if ($value === null) {
+                continue;
+            }
             Arr::set($values, $key, call_user_func($callback, $value));
         }
-        $request->merge($values);
+        if ($values) {
+            $request->merge($values);
+        }
     }
 
 }

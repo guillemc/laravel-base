@@ -14,4 +14,10 @@
 
 @section('content')
 <p>TO DO: user list</p>
+
+<p>search: <?php print_r($search) ?></p>
+
+<p>pageSize: {{ $pageSize }}</p>
+
+<p>page: {{ $page }}</p>
 @endsection
