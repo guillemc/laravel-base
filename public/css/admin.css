@@ -81,3 +81,8 @@ div.required label.control-label:after {
 .box-header h2 {    
     font-size: 20px;
 }
+
+.buttons {
+    clear: left;
+    margin-top: 20px;
+}

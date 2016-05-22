@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\User;
-use Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Lang;

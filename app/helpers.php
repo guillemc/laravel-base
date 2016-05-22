@@ -16,3 +16,8 @@ function html_classes($a) {
     }
     return $classes ? 'class="'.implode(' ', $classes).'"' : '';
 }
+
+
+function prepare_like($str) {
+    return '%'.addcslashes($str, '%_').'%';
+}

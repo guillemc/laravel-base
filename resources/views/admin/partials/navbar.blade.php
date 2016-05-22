@@ -8,10 +8,12 @@
     <ul class="nav navbar-nav">
 
       @unless (Auth::guest())
+
+      @can('administrator.manage')
       <li>
         <a href="{{ route('admin.administrator.index') }}"><i class="fa fa-users"></i>&nbsp;{{ trans('admin.menu_administrators') }}</a>
       </li>
-
+      @endcan
 
       <li class="dropdown user user-menu">
         <!-- Menu Toggle Button -->

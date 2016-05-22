@@ -103,7 +103,12 @@ return [
         'subject' => 'subject',
         'message' => 'message',
         'content' => 'content',
-        'available' => 'disponible',
+        'available' => 'available',
         'size' => 'size',
+        'id' => 'id',
+        'role' => 'role',
+        'created_at' => 'created',
+        'updated_at' => 'updated',
+        'last_login' => 'last login',
     ],
 ];

@@ -51,6 +51,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::post('/password/reset', 'Auth\PasswordController@reset')->name('admin.reset_password_action');
 
 
+    Route::get('/template/index', 'TemplateController@index')->name('admin.template.index');
+
     /* RESTFUL ROUTES
     GET       /user              index    user.index
     GET       /user/create       create   user.create
