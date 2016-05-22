@@ -22,13 +22,14 @@ class <?= $modelName ?>Controller extends Controller
 
     protected function filterRequest(Request $request)
     {
-        $this->filter($request, ['name', 'email'], 'trim');
+        // $this->filter($request, ['name', 'email'], 'trim');
     }
 
     protected function getValidationRules($model = null)
     {
         return [
             // 'name' => 'required|max:60',
+            // 'email' => 'required|email|max:120',
             // ...
         ];
     }
