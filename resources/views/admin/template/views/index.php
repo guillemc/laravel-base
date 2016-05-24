@@ -6,7 +6,7 @@ $link_names = ['id', 'name', 'title', 'email', 'code'];
 
 ?>
 @php
-    $title = trans('admin.menu_<?= $plural_name ?>');
+    $title = <?= 'trans' ?>('admin.menu_<?= $plural_name ?>');
     $url = url()->current();
 @endphp
 
@@ -58,8 +58,8 @@ $link_names = ['id', 'name', 'title', 'email', 'code'];
       <td>
         <select class="form-control" name="search[<?= $name ?>]">
           <option value=""></option>
-          <option value="1" @selected(isset($search['<?= $name ?>']) && $search['<?= $name ?>'] == '1')>{{ trans('admin.yes') }}</option>
-          <option value="0" @selected(isset($search['<?= $name ?>']) && $search['<?= $name ?>'] == '0')>{{ trans('admin.no') }}</option>
+          <option value="1" @selected(isset($search['<?= $name ?>']) && $search['<?= $name ?>'] == '1')>{{ trans('admin.option_yes') }}</option>
+          <option value="0" @selected(isset($search['<?= $name ?>']) && $search['<?= $name ?>'] == '0')>{{ trans('admin.option_no') }}</option>
         </select>
       </td>
 <?php elseif ($listFields[$name] == 'select_filter'): ?>
@@ -88,7 +88,7 @@ $link_names = ['id', 'name', 'title', 'email', 'code'];
         if ($listFields[$name] == 'select_filter'):
             $label = '$r->getOptionValue(\''.$name.'\')';
         elseif ($listFields[$name] == 'boolean_filter'):
-            $label = '$r->'.$name.' ? trans(\'admin.yes\') : trans(\'admin.no\')';
+            $label = '$r->'.$name.' ? trans(\'admin.option_yes\') : trans(\'admin.option_no\')';
         else:
             $label = '$r->'.$name;
         endif;

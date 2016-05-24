@@ -14,10 +14,17 @@ Clone or download the repository
 git clone https://github.com/guillemc/laravel-base.git myappname
 ```
 
-Give write permissions over the `storage` folder to the webserver
+Give write permissions over the `storage` and `bootstrap/cache` folders to the webserver
 
 ```bash
-chmod -R a+w storage
+chmod -R a+w storage bootstrap/cache
+```
+
+Install dependencies with composer
+
+```bash
+cd myappname
+composer install
 ```
 
 Create an `.env` file for the app

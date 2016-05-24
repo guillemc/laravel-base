@@ -5,7 +5,7 @@ $plural_name = str_plural($model_name);
 
 ?>
 @php
-    $title = trans('admin.menu_<?= $plural_name ?>');
+    $title = <?= 'trans' ?>('admin.menu_<?= $plural_name ?>');
     $label = $model-><?= $titleField ?>;
 @endphp
 
