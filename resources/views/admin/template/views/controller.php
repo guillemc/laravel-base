@@ -20,7 +20,7 @@ class <?= $modelName ?>Controller extends Controller
         $this->repository = $repository;
     }
 
-    protected function filterRequest(Request $request)
+    protected function prepareRequest(Request $request)
     {
         // $this->filter($request, ['name', 'email'], 'trim');
     }
@@ -60,7 +60,7 @@ class <?= $modelName ?>Controller extends Controller
     }
 
     public function update(Request $request, <?= $modelName ?> $<?= $model_name ?>) {
-        $this->filterRequest($request);
+        $this->prepareRequest($request);
         $this->validate($request, $this->getValidationRules($<?= $model_name ?>));
         $<?= $model_name ?>->update($request->all());
         // Session::flash('status', trans('admin.status_successfully_updated'));
@@ -74,7 +74,7 @@ class <?= $modelName ?>Controller extends Controller
     }
 
     public function store(Request $request) {
-        $this->filterRequest($request);
+        $this->prepareRequest($request);
         $this->validate($request, $this->getValidationRules());
         <?= $modelName ?>::create($request->all());
         // Session::flash('status', trans('admin.status_successfully_created'));

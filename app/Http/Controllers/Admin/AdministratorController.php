@@ -18,7 +18,7 @@ class AdministratorController extends Controller
         $this->repository = $repository;
     }
 
-    protected function filterRequest(Request $request)
+    protected function prepareRequest(Request $request)
     {
         $this->filter($request, ['name', 'email', 'password'], 'trim');
     }
@@ -66,7 +66,7 @@ class AdministratorController extends Controller
     }
 
     public function update(Request $request, Admin $administrator) {
-        $this->filterRequest($request);
+        $this->prepareRequest($request);
         $this->validate($request, $this->getValidationRules($administrator));
         $administrator->update($request->all());
         // Session::flash('status', trans('admin.status_successfully_updated'));
@@ -80,7 +80,7 @@ class AdministratorController extends Controller
     }
 
     public function store(Request $request) {
-        $this->filterRequest($request);
+        $this->prepareRequest($request);
         $this->validate($request, $this->getValidationRules());
         $request->merge(['password' => bcrypt($request->input('password'))]);
         Admin::create($request->all());

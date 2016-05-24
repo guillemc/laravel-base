@@ -14,7 +14,7 @@ class UserController extends Controller
         $this->repository = $repository;
     }
 
-    protected function filterRequest(Request $request)
+    protected function prepareRequest(Request $request)
     {
         $this->filter($request, ['name', 'email', 'password'], 'trim');
     }
@@ -63,7 +63,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user) {
-        $this->filterRequest($request);
+        $this->prepareRequest($request);
         $this->validate($request, $this->getValidationRules($user));
         if ($password = $request->input('password')) {
             $request->merge(['password' => bcrypt($password)]);
@@ -82,7 +82,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-        $this->filterRequest($request);
+        $this->prepareRequest($request);
         $this->validate($request, $this->getValidationRules());
         $request->merge(['password' => bcrypt($request->input('password'))]);
         User::create($request->all());
