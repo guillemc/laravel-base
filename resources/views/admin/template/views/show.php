@@ -11,7 +11,7 @@ $plural_name = str_plural($model_name);
 
 @extends('admin.layouts.app', [
     'title' => "$title: $label",
-    'breadcrumbs' => [$title],
+    'breadcrumbs' => [route('admin.<?= $model_name ?>.index') => $title, $label],
     'menu_active' => '<?= $plural_name ?>',
 ])
 

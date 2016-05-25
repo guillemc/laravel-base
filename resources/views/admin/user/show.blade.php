@@ -5,7 +5,7 @@
 
 @extends('admin.layouts.app', [
     'title' => "$title: $label",
-    'breadcrumbs' => [$title],
+    'breadcrumbs' => [route('admin.user.index') => $title, $label],
     'menu_active' => 'users',
 ])
 
