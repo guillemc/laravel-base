@@ -39,7 +39,11 @@ class TemplateController extends Controller
             $columns = Schema::getColumnListing($table);
             $fields = [];
             foreach ($columns as $k) {
-                $fields[$k] = Schema::getColumnType($table, $k);
+                try {
+                    $fields[$k] = Schema::getColumnType($table, $k);
+                } catch (\Doctrine\DBAL\DBALException $e) {
+                    $fields[$k] = 'string';
+                }
             }
             $controls = array_merge($this->getDefaultControls($fields), $request->query('controls', []));
             $searchFields = array_merge($this->getDefaultSearchFields($fields), $request->query('searchFields', []));
