@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Schema;
 class TemplateController extends Controller
 {
 
+    protected $labelFields = ['title', 'name', 'email', 'label', 'code', 'id'];
+    protected $positionFields = ['position', 'pos'];
+
     public function index(Request $request)
     {
 
@@ -64,23 +67,34 @@ class TemplateController extends Controller
 
         $controller = view('admin.template.views.controller', compact('modelName', 'modelFullName'));
 
+        $labelFields = $this->labelFields;
         $titleField = 'id';
-        foreach (['title', 'name', 'email', 'code'] as $t) {
+        foreach ($labelfields as $t) {
             if (isset($fields[$t])) {
                 $titleField = $t;
                 break;
             }
         }
 
-        $repository = view('admin.template.views.repository', compact('modelName', 'modelFullName', 'fields', 'searchFields', 'listFields'));
+        $positionField = null;
+        foreach ($this->positionFields as $t) {
+            if (isset($fields[$t]) && $fields[$t] == 'integer') {
+                $positionField = $t;
+                break;
+            }
+        }
 
-        $index = view('admin.template.views.index', compact('modelName', 'modelFullName', 'fields', 'listFields'));
+        $repository = view('admin.template.views.repository', compact('modelName', 'modelFullName', 'fields', 'searchFields', 'listFields', 'positionField'));
+
+        $index = view('admin.template.views.index', compact('modelName', 'modelFullName', 'fields', 'listFields', 'labelFields', 'positionField'));
 
         $edit = view('admin.template.views.edit', compact('modelName', 'modelFullName', 'fields', 'titleField', 'controls'));
 
         $show = view('admin.template.views.show', compact('modelName', 'modelFullName', 'fields', 'titleField'));
 
-        return compact('controller', 'repository', 'index', 'edit', 'show');
+        $templates = compact('controller', 'repository', 'index', 'edit', 'show');
+
+        return $templates;
     }
 
     protected function getDefaultControls($fields)

@@ -25,7 +25,7 @@
     @endforeach
 </p>
 <div class="buttons">
-<a class="btn btn-primary" href="{{ route('admin.user.create') }}">{{ trans('admin.btn_add_new') }}</a>
+<a class="btn btn-primary" href="{{ route('admin.user.create') }}"><i class="fa fa-plus"></i> {{ trans('admin.btn_add_new') }}</a>
 </div>
 </div>
 
@@ -80,7 +80,7 @@
         {!! $pager->links() !!}
     </div>
     <div class="buttons">
-    <a class="btn btn-primary" href="{{ route('admin.user.create') }}">{{ trans('admin.btn_add_new') }}</a>
+    <a class="btn btn-primary" href="{{ route('admin.user.create') }}"><i class="fa fa-plus"></i> {{ trans('admin.btn_add_new') }}</a>
     </div>
 </div>
 

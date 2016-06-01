@@ -2,7 +2,6 @@
 
 $model_name = snake_case($modelName);
 $plural_name = str_plural($model_name);
-$link_names = ['id', 'name', 'title', 'email', 'code'];
 
 ?>
 @php
@@ -32,7 +31,7 @@ $link_names = ['id', 'name', 'title', 'email', 'code'];
     @endforeach
 </p>
 <div class="buttons">
-<a class="btn btn-primary" href="{{ route('admin.<?= $model_name ?>.create') }}">{{ trans('admin.btn_add_new') }}</a>
+<a class="btn btn-primary" href="{{ route('admin.<?= $model_name ?>.create') }}"><i class="fa fa-plus"></i> {{ trans('admin.btn_add_new') }}</a>
 </div>
 </div>
 
@@ -47,7 +46,9 @@ $link_names = ['id', 'name', 'title', 'email', 'code'];
         <th<?php if ($type != 'string') echo ' class="sort-numerical"' ?>><a data-attr="<?= $name ?>" href="#">{{ label('<?= $name ?>') }}</a></th>
 <?php endforeach ?>
         <th class="action-column">
-            &nbsp;
+<?php if ($positionField): ?>
+            <a class="btn btn-default" href="{{ route('admin.<?= $model_name ?>.sort') }}">{{ trans('admin.btn_sort') }} <i class="fa fa-sort"></i></a>
+<?php endif ?>
         </th>
     </tr>
     <tr class="filters">
@@ -93,7 +94,7 @@ $link_names = ['id', 'name', 'title', 'email', 'code'];
             $label = '$r->'.$name;
         endif;
 ?>
-        <td<?php if ($type != 'string') echo ' class="text-center"' ?>><?php if (in_array($name, $link_names)): ?><a href="{{ route('admin.<?= $model_name ?>.edit', $r->id) }}">{{ <?= $label ?> }}</a><?php else: ?>{{ <?= $label ?> }}<?php endif ?></td>
+        <td<?php if ($type != 'string') echo ' class="text-center"' ?>><?php if (in_array($name, $labelFields)): ?><a href="{{ route('admin.<?= $model_name ?>.edit', $r->id) }}">{{ <?= $label ?> }}</a><?php else: ?>{{ <?= $label ?> }}<?php endif ?></td>
 <?php endforeach ?>
         <td class="text-center buttons">
             <a href="{{ route('admin.<?= $model_name ?>.show', $r->id) }}" title="{{ trans('admin.btn_view') }}"><span class="label label-primary"><i class="fa fa-eye"></i></span></a>
@@ -113,7 +114,7 @@ $link_names = ['id', 'name', 'title', 'email', 'code'];
         {!! $pager->links() !!}
     </div>
     <div class="buttons">
-    <a class="btn btn-primary" href="{{ route('admin.<?= $model_name ?>.create') }}">{{ trans('admin.btn_add_new') }}</a>
+    <a class="btn btn-primary" href="{{ route('admin.<?= $model_name ?>.create') }}"><i class="fa fa-plus"></i> {{ trans('admin.btn_add_new') }}</a>
     </div>
 </div>
 
