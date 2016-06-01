@@ -69,7 +69,7 @@ class TemplateController extends Controller
 
         $labelFields = $this->labelFields;
         $titleField = 'id';
-        foreach ($labelfields as $t) {
+        foreach ($labelFields as $t) {
             if (isset($fields[$t])) {
                 $titleField = $t;
                 break;
