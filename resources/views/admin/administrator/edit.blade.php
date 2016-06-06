@@ -37,7 +37,7 @@
     <div class="form-group @err_class('name')">
         <label class="control-label col-sm-4">{{ label('name') }}</label>
         <div class="col-sm-8">
-        <input type="text" class="form-control" name="name" value="{{ old('name') ?: $model->name }}" maxlength="60">
+        <input type="text" class="form-control" name="name" value="{{ old('name', $model->name) }}" maxlength="60">
         @err_block('name')
         </div>
     </div>
@@ -46,7 +46,7 @@
     <div class="form-group @err_class('email')">
         <label class="control-label col-sm-4">{{ label('email') }}</label>
         <div class="col-sm-8">
-        <input type="text" class="form-control" name="email" value="{{ old('email') ?: $model->email }}" maxlength="120">
+        <input type="text" class="form-control" name="email" value="{{ old('email', $model->email) }}" maxlength="120">
         @err_block('email')
         </div>
     </div>
@@ -56,7 +56,7 @@
       <div class="col-sm-8">
         <select class="form-control" name="role">
           @foreach($model->getOptions('role') as $k => $v)
-          <option value="{{ $k }}" @selected($model->role == $k)>{{ $v }}</option>
+          <option value="{{ $k }}" @selected($k == old('role', $model->role))>{{ $v }}</option>
           @endforeach
         </select>
         @err_block('role')

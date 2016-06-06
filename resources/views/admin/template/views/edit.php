@@ -50,7 +50,7 @@ $plural_name = str_plural($model_name);
         <label class="control-label col-sm-<?= $labelWidth ?>">{{ label('<?= $name ?>') }}</label>
         <div class="col-sm-<?= $controlWidth ?>">
           <textarea class="form-control" name="<?= $name ?>" cols="60" rows="5">
-            {{ old('<?= $name ?>') ?: $model-><?= $name ?> }}
+            {{ old('<?= $name ?>', $model-><?= $name ?>) }}
           </textarea>
         @err_block('<?= $name ?>')
         </div>
@@ -62,7 +62,7 @@ $plural_name = str_plural($model_name);
         <select class="form-control" name="<?= $name ?>">
           <option value=""></option>
           @foreach($model->getOptions('<?= $name ?>') as $k => $v)
-          <option value="{{ $k }}" @selected($model-><?= $name ?> == $k)>{{ $v }}</option>
+          <option value="{{ $k }}" @selected($k == old('<?= $name ?>', $model-><?= $name ?>))>{{ $v }}</option>
           @endforeach
         </select>
         @err_block('<?= $name ?>')
@@ -72,7 +72,7 @@ $plural_name = str_plural($model_name);
     <div class="form-group @err_class('<?= $name ?>')">
       <div class="col-sm-offset-<?= $labelWidth ?> col-sm-<?= $controlWidth ?>">
         <div class="checkbox">
-          <label><input type="checkbox" name="<?= $name ?>" value="1" @checked($model-><?= $name ?>)> {{ label('<?= $name ?>') }}</label>
+          <label><input type="checkbox" name="<?= $name ?>" value="1" @checked(old('<?= $name ?>', $model-><?= $name ?>))> {{ label('<?= $name ?>') }}</label>
         </div>
         @err_block('<?= $name ?>')
       </div>
@@ -82,10 +82,10 @@ $plural_name = str_plural($model_name);
       <label class="control-label col-sm-<?= $labelWidth ?>">{{ label('<?= $name ?>') }}</label>
       <div class="col-sm-<?= $controlWidth ?>">
         <label class="radio-inline">
-            <input type="radio" name="<?= $name ?>" @checked(!$model-><?= $name ?>) value="0"> {{ trans('admin.option_no') }}
+            <input type="radio" name="<?= $name ?>" @checked(!old('<?= $name ?>', $model-><?= $name ?>)) value="0"> {{ trans('admin.option_no') }}
         </label>
         <label class="radio-inline">
-            <input type="radio" name="<?= $name ?>" @checked($model-><?= $name ?>) value="1"> {{ trans('admin.option_yes') }}
+            <input type="radio" name="<?= $name ?>" @checked(old('<?= $name ?>', $model-><?= $name ?>)) value="1"> {{ trans('admin.option_yes') }}
         </label>
         @err_block('<?= $name ?>')
       </div>
@@ -96,7 +96,7 @@ $plural_name = str_plural($model_name);
       <div class="col-sm-<?= $controlWidth ?>">
         @foreach($model->getOptions('<?= $name ?>') as $k => $v)
         <div class="checkbox">
-          <label><input type="checkbox" name="<?= $name ?>" value="{{ $v }}" @checked($model-><?= $name ?> == $k)> {{ $v }}</label>
+          <label><input type="checkbox" name="<?= $name ?>" value="{{ $v }}" @checked($k == old('<?= $name ?>', $model-><?= $name ?>))> {{ $v }}</label>
         </div>
         @endforeach
         @err_block('<?= $name ?>')
@@ -108,7 +108,7 @@ $plural_name = str_plural($model_name);
       <div class="col-sm-<?= $controlWidth ?>">
         @foreach($model->getOptions('<?= $name ?>') as $k => $v)
         <div class="radio">
-          <label><input type="radio" name="<?= $name ?>" value="{{ $v }}" @checked($model-><?= $name ?> == $k)> {{ $v }}</label>
+          <label><input type="radio" name="<?= $name ?>" value="{{ $v }}" @checked($k == old('<?= $name ?>', $model-><?= $name ?>))> {{ $v }}</label>
         </div>
         @endforeach
         @err_block('<?= $name ?>')
@@ -118,7 +118,7 @@ $plural_name = str_plural($model_name);
     <div class="form-group @err_class('<?= $name ?>')">
         <label class="control-label col-sm-<?= $labelWidth ?>">{{ label('<?= $name ?>') }}</label>
         <div class="col-sm-<?= $controlWidth ?>">
-        <input type="text" class="form-control" name="<?= $name ?>" value="{{ old('<?= $name ?>') ?: $model-><?= $name ?> }}" maxlength="60">
+        <input type="text" class="form-control" name="<?= $name ?>" value="{{ old('<?= $name ?>', $model-><?= $name ?>) }}" maxlength="60">
         @err_block('<?= $name ?>')
         </div>
     </div>

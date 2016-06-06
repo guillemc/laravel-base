@@ -8,6 +8,7 @@ $model_name = snake_case($modelName);
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use <?= $modelFullName ?>;
 use App\Repositories\<?= $modelName ?>Repository;
 
